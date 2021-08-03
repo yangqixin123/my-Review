@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue-router</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue-router/3.4.8/vue-router.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="navs">
+            <ul>
+                <li><router-link to="/user">用户管理</router-link></li>
+                <li><router-link to="/product">产品管理</router-link></li>
+                <li><router-link to="/order/100?name=terry">订单管理</router-link></li>
+            </ul>
+            <button @click="toOrderHandler">点我去订单管理</button>
+        </div>
+        <hr>
+        <div class="content">
+            <router-view></router-view>
+        </div>
+    </div>
+
+    <script>
+        //定义子组件
+        let User = {
+            template:`
+                        <div>
+                            <h2>用户管理</h2>
+                            <p>...</p>
+                        </div>
+                    `
+        }
+        let Product = {
+            template:`
+                        <div>
+                            <h2>产品管理</h2>
+                            <p>...</p>
+                        </div>
+                    `
+        }
+        let Order = {
+            template:`
+                        <div>
+                            <h2>订单管理</h2>
+                            <p>...</p>
+                        </div>
+                    `,
+            created() {
+                console.log('router:',this.$router);
+                console.log('route:',this.$route);
+            },
+        }
+        const routes = [
+            { path:"/user", component:User },
+            { path:"/product", component:Product },
+            { path:"/order/:id", component:Order }
+        ]
+
+        let router = new VueRouter({
+            routes,
+        })
+
+        router.beforeEach((to, from, next) => {
+            // to and from are both route objects. must call `next`.
+            console.log(to)
+            console.log(from)
+            console.log(next)
+            //调用next才能放行
+            next()
+            //可以通过判断用户状态来改变跳转位置
+        })
+
+        //将路由注册到Vue实例中
+        new Vue({
+            el:"#app",
+            router,
+            data() {
+                return {
+                    
+                }
+            },
+            methods: {
+                toOrderHandler(){
+                    this.$router.push("/order/100")
+                }
+            },
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+beforeCreate
+    在初始化时候调用，完成vue声明的相关属性和事件的初始化，这个时候还不能访问data中的属性
+    和methods中的方法
+created
+    初始化完毕，完成了vue的数据注入以及数据监听，这时候意味着vue实例创建完毕，可以进行数据访问操作
+beforeMount
+    在created之后，vue会判断实例中没有el属性，这里就会完成模板的解析，但是数据并没有绑定
+mounted
+    这里会创建vm.$el替换el,解析模板完成数据绑定操作
+beforeUpdate
+    更新虚拟的dom节点
+updated
+    完成了页面的重新渲染
+beforeDestroy
+    销毁之前使用，此时还是可以访问vue实例
+destroyed
+    完成销毁，移除监听器、子组件等销毁vue实例对象

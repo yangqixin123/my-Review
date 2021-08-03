@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-for指令，列表渲染</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!-- v-for根据数据生成列表结构，通常配合数组使用 -->
+    <!-- 可以遍历数组，也可以遍历对象 -->
+    <div id="app">
+        <ul>
+            <li v-for="(item,index) in arr"  :key="index">{{index + 1}}-name:{{item}}</li>
+        </ul>
+    </div>
+
+    <!-- vue将被侦听的数组的变更方法进行了包裹，所以他们也将会触发视图更新 -->
+    <!-- 这些被包裹的方法包括:push() pop() shift() unshift() splice() sort() reverse() -->
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                arr:['larry','jerry','tom','bob']
+            }
+        })
+    </script>
+</body>
+</html>

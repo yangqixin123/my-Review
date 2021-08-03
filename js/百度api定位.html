@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>获取当前位置</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <script>
+                    $.ajax({
+                        url: 'http://api.map.baidu.com/location/ip?ak=5egZKcfgvMG61EavcHypsNjghAGG14vh&ip=&coor=bd09ll',
+                        type: 'get',
+                        dataType: 'jsonp',  // 请求方式为jsonp
+                        success:async(res) => {
+                            if(res){
+                                document.write(`您当前所在地区为：${res.content.address}`);
+                                document.write(`<br/>`);
+                                document.write(`坐标为：${JSON.stringify(res.content.point)}`);
+                                document.write(`<br/>`);
+                                document.write(`详细地址为：${JSON.stringify(res.content.address_detail)}`);
+                            }else{
+                                alert("获取失败！")
+                            }
+                        }
+                    });
+    </script>
+</body>
+</html>

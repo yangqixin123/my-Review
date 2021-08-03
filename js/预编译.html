@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>预编译</title>
+</head>
+<body>
+    <script>
+        /*
+            第一步和第二步:
+            AO:{
+                a:undefined,
+                b:undefined,
+            }
+        */
+
+        /*
+            第三步
+            AO:{
+                a:1,
+                b:undefined,
+            }
+        */
+
+        /*
+            第四步
+            AO:{
+                a:function a(){},
+                b:undefined,
+                d:function(){},
+            }
+        */
+
+        function fn(a){
+            console.log(a);
+            var a = 123;
+            console.log(a);
+            function a(){}
+            console.log(a);
+            var b = function (){}
+            console.log(b);
+            function d(){}
+        }
+        fn(1)
+
+
+        // (function(){var a=b=5;})();
+        // console.log(a);
+        // console.log(b);
+
+
+        // abc = 1;
+		// function Foo(){
+		// 	this.abc = 2;
+		// }
+		// var foo = new Foo();
+		// alert(foo.abc);   //2
+
+        // var abc = function foo(){}
+        // alert(typeof foo);           //undefined
+    </script>
+</body>
+</html>

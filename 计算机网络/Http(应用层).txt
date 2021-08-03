@@ -1,0 +1,22 @@
+HTTP        超文本传输协议
+无状态的    指对于事务处理没有记忆能力，解决办法，通过cookie,session
+端口默认80
+
+请求头(包括请求行和header)
+GET   /doc/test.html HTTP1.1            request line
+HOST                                    request header
+Accept
+Accept-language
+User-Agent
+
+请求体 name=zs&age=12&gender=male
+
+HTTP缓存
+html最好不要缓存
+图片一般会被缓存
+
+
+GET用URL传参数，POST用body传参数
+GET一般是获取数据，POST一般是提交数据
+GET一般传送数据大小不超过2k，POST理论上传送大小没有限制
+GET安全性较低，POST安全较高

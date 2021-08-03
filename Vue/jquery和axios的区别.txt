@@ -1,0 +1,13 @@
+jquery和axios
+    jquery基于回调函数
+        $.get(url,()=>{})
+    axios基于promise
+        axios.get(url).then(()=>{}).catch(()=>{})
+    发送POST请求的时候，jquery默认编码查询字符串，axios默认json
+
+
+    application/x-www-from-urlencoded    查询字符串
+    multipart/form-data                  一般是文件上传
+    text/plain                           纯文本
+    除了这三种基础编码格式，其余的POST请求在发送请求之前都会先发送一个option请求
+    

@@ -1,0 +1,67 @@
+路由机制 vue-router
+router-link     按钮，点击后可以引起router-view的变化
+router-view     容器，承载变化的内容
+
+1)实现机制
+    1.定义子组件
+        var User = {
+            template:``,
+            data(){return {}}
+        }
+
+        var Product = {
+            template:``,
+            data(){return {}}
+        }
+
+    2.在路由中注册
+        const routes = [
+            { path: '/user', component:User },
+            { path: '/product', component:Product }
+        ]
+        const router = new VueRouter({
+            routes
+        })
+
+    3.将路由实例注册到Vue中
+        new Vue({
+            router
+        })
+
+
+2)编程式路由
+    this.$router.push(path)
+    this.$router.back(path)
+    this.$router.forward(path)
+
+3)传参
+    let routes = [{
+        path:"/user/:id",
+        component:User,
+        props:true
+    }]
+    this.$router.push("/user/1001?name=yqx")
+
+    let User = {
+        data(){return {}}
+        props:["id"],   期望从父组件重接受的变量
+        created(){
+            this.$route.params.id
+            this.$route.query.name
+        }
+    }
+
+
+导航守卫
+    router.beforeEach((to, from, next) => {
+            // to and from are both route objects. must call `next`.
+            console.log(to)
+            console.log(from)
+            console.log(next)
+            //调用next才能放行
+            next()
+            //可以通过判断用户状态来改变跳转位置
+    })
+
+
+脚手架中应用

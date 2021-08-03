@@ -1,0 +1,4 @@
+function test(){
+
+}
+test.[[scope]]  //这里面存的就是作用域

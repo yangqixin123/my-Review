@@ -1,0 +1,42 @@
+事件三要素
+    事件对象(event对象)、事件处理函数(匿名函数)、事件源(dom对象)
+    event.target  event.currentTarget  event.preventDefault
+    
+事件流
+事件捕获、事件冒泡
+
+事件代理
+    将事件绑定在当前元素的父元素上，而不是当前元素上，当前元素的同级元素就可以动态添加与删除
+
+dom
+    var dom = document.getElementById("one")
+    dom.onClick = function(event){}
+    dom为事件源、匿名函数为事件处理函数、event为事件对象
+jQuery
+    var $dom = $("#one");
+    $dom.on('click',function(event){})
+
+vue 
+    <div id="app">
+        <button @click="addHandler">添加</button>
+    </div>
+
+    new Vue({
+        el:"#app",
+        data:{},
+        methods:{
+            addHandler(event){}
+        }
+    })
+
+    button为事件源
+    addHandler为事件处理函数
+    event为事件对象
+
+事件修饰符
+    :click.stop ===> event.stopPropagation()
+    :submit.prevent ===> event.preventDefault()
+    .once 仅绑定一次
+
+按键修饰符
+    .enter .tab .delete

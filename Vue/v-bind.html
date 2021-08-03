@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-bind绑定属性</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        div > img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+        }
+        .active{
+            border:2px solid red
+        }
+    </style>
+</head>
+<body>
+    <!-- v-bind可以直接省略为:属性名 -->
+    <div id="app">
+        <img v-bind:src="imgSrc" alt="">
+        <br>
+        <img :src="imgSrc" alt="" :title="imgTitle+'!'" :class="isActive ? 'active' : ''" @click="toggleActive">
+        <br>
+        <img :src="imgSrc" alt="" :title="imgTitle+'!'" :class="{active:isActive}" @click="toggleActive">
+
+    </div>
+
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                imgSrc:"http://yqx.cool/imgs/4.jpg",
+                imgTitle:"图片",
+                isActive:false
+            },
+            methods: {
+                toggleActive(){
+                    this.isActive = !this.isActive
+                }
+            },
+        })
+    </script>
+</body>
+</html>

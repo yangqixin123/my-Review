@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作用域插槽</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <my-table :data="customers">
+            <template v-slot:head>
+                <!-- v-slot:可以省略为# -->
+                <th>
+                    <td>编号</td>
+                    <td>姓名</td>
+                    <td>年龄</td>
+                </th>
+            </template>
+            <!-- template相当于回调函数，test相当于形参，
+                子组件模板中的slot相当于调用回调函数,:row="row"相当于实参 -->
+            <template v-slot:default="test">
+                <!-- v-slot:default叫做具名插槽 -->
+                <tr>
+                    <td>{{test.row.id}}</td>
+                    <td>{{test.row.name}}</td>
+                    <td>{{test.row.age}}</td>
+                </tr>
+            </template>
+        </my-table>
+    </div>
+
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                customers:[
+                    {id:1,name:"terry",age:12},
+                    {id:2,name:"lerry",age:13},
+                    {id:3,name:"jerry",age:14},
+                    {id:1,name:"tom",age:15},
+                ]
+            },
+            components:{
+                'my-table':{
+                    template:`
+                        <table>
+                            <thead>
+                                <slot name="head"></slot>    
+                            </thead>
+                            <tbody>
+                                <slot v-for="(row,index) in data" :row="row"></slot>    
+                            </tbody>    
+                        </table>
+                    `,
+                    props:{
+                        data:Array
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

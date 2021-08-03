@@ -1,0 +1,25 @@
+vuex是一个专门为Vue.js应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，
+并以相应的规则保证状态以一种可预测的方式发生变化。
+如果您不打算开发大型单页应用，使用Vuex可能是冗余的。
+
+
+        state       用于存放状态,直接获取状态
+            store.state.a
+        getters     用于获取状态,控制
+            a(){
+                return a.fliter();
+            }
+            store.getters.a
+        mutation    突变，同步修改state值的方式
+            increment(state,p1,p2,...){
+                return state.a++
+            }
+            store.commit("increment")    //突变是用来提交的
+        Action      支持异步操作，提交突变
+            findAll(context,p1,p2,...){
+
+            }
+            context与store类似，可以访问store中的state,getters,commit,dispatch
+            store.dispatch()
+
+        Module

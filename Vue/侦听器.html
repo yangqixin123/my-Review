@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue基础</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{params}}</p>
+        <p>{{params.keywords}}</p>
+        <p>{{params.status}}</p>
+        <button @click="handleClick">改变status</button>
+    </div>
+
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                params:{
+                    keywords:'关键字',
+                    status:1,
+                }
+            },
+            methods:{
+                handleClick() {
+                    this.params.status++;
+                    this.params.keywords = this.params.keywords + '我嘤';
+                }
+            },
+            watch:{
+                // params:function(new_v,old_v){
+                //     console.log(new_v,old_v)
+                // },
+
+                "params.keywords":function(new_v,old_v){
+                    console.log(new_v,old_v)
+                },
+
+                // "params.status":function(new_v,old_v){
+                //     console.log(new_v,old_v)
+                // },
+
+                // params:{
+                //     handler:function(new_v,old_v){
+                //         console.log('666',new_v,old_v)
+                //     },
+                //     deep:true
+                // }
+            }
+        })
+    </script>
+</body>
+</html>

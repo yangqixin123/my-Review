@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件处理</title>
+    <style>
+        .outer,.center,.inner{
+            box-sizing: border-box;
+            padding: 50px;
+            height: 100%;
+            border: 1px solid #000;
+        }
+        .outer{
+            height: 400px;
+            width: 400px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="outer">
+            <div class="center">
+                <div class="inner" @click="innerHandler($event,1,2)">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+
+            },
+            methods: {
+                innerHandler(event){
+                    alert('this is inner')
+                    console.log(event)
+                }
+            },
+        })
+    </script>
+</body>
+</html>

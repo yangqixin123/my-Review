@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prop</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <my-list :data="users"></my-list>
+        <my-list :data="customers"></my-list>
+    </div>
+
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                users:[
+                    {name:'terry',age:12},
+                    {name:'jerry',age:13},
+                    {name:'tom',age:14},
+                ],
+                customers:[
+                    {name:'zhangsan',age:10},
+                    {name:'lisi',age:11},
+                    {name:'wangwu',age:12},
+                ]
+            },
+            components:{
+                'my-list':{
+                    template:`
+                    <ul>
+                        <li v-for="item in data">{{item.name}}-{{item.age}}</li>
+                    </ul> 
+                    `,
+                    props:['data'],  //期待父组件传递给他的参数
+                    data() {
+                        return {
+                            
+                        }
+                    },
+                }
+            }
+        })
+    </script>
+</body>
+</html>

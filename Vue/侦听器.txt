@@ -1,0 +1,42 @@
+<div id="app"></div>
+
+new Vue({
+    el:"#app",
+    data:{
+        params:{
+            keywords:'',
+            status:1,
+        }
+    },
+    methods:{},
+    watch:{
+        /*
+        "params.keywords":function(new_v,old_v){
+            console.log(new_v,old_v)
+        }
+        */
+        params:{
+            handler:function(new_v,old_v){
+
+            },
+            deep:true
+        }
+    }
+})
+
+
+侦听器
+    监听数据的变化
+    1.简洁
+        watch:{
+            "params.keywords":function(new_v,old_v){
+                console.log(new_v,old_v)
+            }
+        }
+    2.详细
+        params:{
+            handler:function(new_v,old_v){
+
+            },
+            deep:true
+        }

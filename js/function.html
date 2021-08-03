@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //命名函数表达式
+        var demo = function abc(){
+
+        }
+        //函数的定义方式
+        // 匿名函数表达式---函数表达式
+        var demo = function(){
+
+        }
+        //函数声明
+        function test(){
+
+        }
+        function sum(a,b,c,d,e){
+            if(sum.length > arguments.length){
+                console.log('形参多了');
+            }else if(sum.length < arguments.length){
+                console.log('实参多了');
+            }else{
+                console.log('形参实参个数相等');
+            }
+        }
+        sum(1,2,3,4,5)
+    </script>
+</body>
+</html>

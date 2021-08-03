@@ -1,0 +1,58 @@
+插槽
+    父组件传递dom片段给子组件，用插槽
+
+    父组件在调用子组件的时候，父组件在子组件的标签中添加的内容要想传递给子组件，子组件必须通过<slot>来接收
+    <my-alert>
+        <div>hello</div>
+    </my-alert>
+
+    Vue.component("my-alert",{
+        template:`
+            <div class='alert'>
+                <slot></slot>
+            </div>
+        `,
+        data(){
+            return {}
+        }
+    })
+
+
+作用域插槽
+            <template v-slot:head>
+                <!-- v-slot:可以省略为# -->
+                <th>
+                    <td>编号</td>
+                    <td>姓名</td>
+                    <td>年龄</td>
+                </th>
+            </template>
+            <!-- template相当于回调函数，slot相当于形参，
+                子组件模板中的slot相当于调用回调函数,:row="row"相当于实参 -->
+            <template v-slot:default="slot">
+                <!-- v-slot:default叫做具名插槽 -->
+                <tr>
+                    <td>{{slot.row.id}}</td>
+                    <td>{{slot.row.name}}</td>
+                    <td>{{slot.row.age}}</td>
+                </tr>
+            </template>
+
+
+            components:{
+                'my-table':{
+                    template:`
+                        <table>
+                            <thead>
+                                <slot name="head"></slot>    
+                            </thead>
+                            <tbody>
+                                <slot v-for="(row,index) in data" :row="row"></slot>    
+                            </tbody>    
+                        </table>
+                    `,
+                    props:{
+                        data:Array
+                    }
+                }
+            }

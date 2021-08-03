@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            1 , 2, 3, 4, 5, 6
+            18,19,20,21,22, 7
+            17,28,29,30,23, 8
+            16,27,26,25,24, 9
+            15,14,13,12,11,10
+        */
+
+        function spiralOrder(arr) {
+            if (arr.length == 0) return []
+            const res = []
+            let top = 0, bottom = arr.length - 1, left = 0, right = arr[0].length - 1
+            const size = arr.length * arr[0].length
+            while (res.length !== size) { // 仍未遍历结束
+                for (let i = left; i <= right; i++) res.push(arr[top][i])
+                top++
+                for (let i = top; i <= bottom; i++) res.push(arr[i][right])
+                right--
+                if (res.length === size) break // 遍历结束
+                for (let i = right; i >= left; i--)  res.push(arr[bottom][i])
+                bottom--
+                for (let i = bottom; i >= top; i--) res.push(arr[i][left])
+                left++
+            }
+            console.log(res)
+            return res
+        };
+        spiralOrder([[1,2,3,4,5,6],[18,19,20,21,22,7],[17,28,29,30,23,8],[16,27,26,25,24,9],[15,14,13,12,11,10]])
+    </script>
+</body>
+</html>

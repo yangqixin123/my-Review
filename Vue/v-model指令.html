@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-model指令</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!-- 获取和设置表单元素的值(双向数据绑定) -->
+    <div id="app">
+        <input type="text" v-model="message" @keyup.enter="getM">
+        <h2>{{message}}</h2>
+        <button @click="setM">修改message</button>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                message:"Hello v-model"
+            },
+            methods:{
+                getM(){
+                    alert(this.message)
+                },
+                setM(){
+                    this.message = "修改"
+                }
+            },
+        })
+    </script>
+</body>
+</html>

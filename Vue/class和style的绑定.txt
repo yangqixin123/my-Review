@@ -1,0 +1,21 @@
+style的绑定，可以是字符串、对象、数组，class的绑定与style类似
+    <div :style="str">
+        helloworld
+    </div>
+    <br>
+    <div :style="obj">
+        hello
+    </div>
+    <br>
+    <div :style="[obj,obj2]">hello2</div>
+
+    data:{
+            str:"color:#fff;background:teal",
+            obj:{
+                color:"#fff",
+                background:"orange"
+            },
+            obj2:{
+                border:"2px solid #ccc"
+            }
+        },

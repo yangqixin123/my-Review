@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>冒泡排序</title>
+</head>
+<body>
+    <script>
+        let arr = [4,5,8,9,6,2,2];
+        for(let i = 0; i<arr.length-1; i++){
+            for(let j = 0; j<arr.length-1-i;j++){
+                if(arr[j]>arr[j+1]){
+                    let temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
+                }
+            }
+        }
+        console.log(arr);
+
+
+        //检查自己排序后的arr是否正确
+        function isCorrect(arr){
+            let num = 0;
+            for(let k = 0; k < arr.length-1; k++){
+                if(arr[k]>arr[k+1]){
+                    num += 1;
+                    break;
+                }
+            }
+            console.log(`${num === 0 ? '排序正确' : '排序错误'}`);
+        }
+        isCorrect(arr)
+        
+    </script>
+</body>
+</html>

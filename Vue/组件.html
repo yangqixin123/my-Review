@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <my-alert>111</my-alert>
+        <br>
+        <my-alert></my-alert>
+    </div>
+
+    <script>
+        //自定义子组件
+        Vue.component("my-alert",{
+            template:`
+                <div style="background:pink;color:#fff;border-radius:3px;padding:.5em 1em">
+                    {{msg}}
+                    <slot></slot>
+                </div>
+            `,
+            data:function(){
+                return {
+                    msg:'警告信息'
+                }
+            },
+        });
+
+        //根组件实例对象
+        new Vue({
+            el:"#app",
+
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+npm install -g @vue/cli
+
+vue create app01
+
+结构
+            src                 源码目录
+                assets      静态资源(比如图片)
+                components  组件(表格、导航、模态框)
+                    table.vue
+                    list.vue
+                    modal.vue
+                    ...
+                pages/views 组件(子页面组件)
+                    customer.vue
+                    category.vue
+                    product.vue
+                    ...
+                main.js     程序的入口，根组件定义的地方
+                App.vue     第一个组件(主页)
+                
+            public              公共资源
+            node_modules        依赖
+            package.json        项目的配置文件
+            babel.config.js     babel配置文件
+            vue.config.js       webpack配置文件

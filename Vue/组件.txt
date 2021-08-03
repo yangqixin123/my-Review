@@ -1,0 +1,21 @@
+组件
+    全局注册
+        new Vue({通过el指向模板,data:{}})
+        Vue.component('组件名',{template:``,data:function(){retun{}},这里data必须为一个函数，返回一个对象})
+    局部注册
+        new Vue({
+            el:'#app',
+            components:{
+                'my-alert':{
+                    template:``,
+                    data(){
+                        return {}
+                    }
+                },
+                'my-button':{}
+            }
+        })
+
+组件名
+    my-alert 或者 MyAlert
+    使用的时候最好使用<my-alert></my-alert>

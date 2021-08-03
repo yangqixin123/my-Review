@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-on事件绑定</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h3>{{num}}</h3>
+        <button v-on:click="add">点击加1</button>
+        <input type="button" value="v-on简写" @click="handlerInput"/>
+        <input type="button" value="双击事件" @dblclick="handleToDbclick"/>
+    </div>
+
+    <!-- v-on: 可以省略成@  -->
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                num:0
+            },
+            methods:{
+                add:function(){
+                    return this.num++;
+                },
+                handlerInput(){
+                    alert("这是v-on简写方式")
+                },
+                handleToDbclick(){
+                    alert("你双击了我")
+                }
+            }
+        })
+    </script>
+</body>
+</html>

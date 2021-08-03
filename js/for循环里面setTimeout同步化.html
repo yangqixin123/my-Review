@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for循环里面setTimeout同步化</title>
+</head>
+<body>
+    <script>
+
+        for(var i = 1;i <= 5;i++){
+            setTimeout(() => {
+                console.log(i)
+            },i*1000)
+        }
+
+
+        // 解决办法
+        // 1.把var变成let
+        // for(let i = 1;i <= 5;i++){
+        //     setTimeout(() => {
+        //         console.log(i)
+        //     },i*1000)
+        // }
+
+        // 2.setTimeout设置第三个参数，传进回调函数里面
+        // for(var i  = 1; i <=5; i++){
+        //     setTimeout((i) => {
+        //         console.log(i)
+        //     },i*1000,i)
+        // }
+
+        // 3.立即执行函数形成闭包
+        // for(var i = 1; i <= 5; i++){
+        //     (function(j){
+        //         setTimeout(() => {
+        //            console.log(j) 
+        //         },i*1000);
+        //     })(i)
+        // }
+    </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+以下步骤是在配置好环境后才能正常操作，环境包括(jdk,sdk,gradle)
+
+先在桌面或某位置建一个文件夹
+cd进来
+cordova create XXX
+cd进xxx文件夹，把里面www文件夹的东西替换为vue或react打包好的东西
+然后在xxx文件夹里面cordova platform add android@8.1.0
+添加后cordova platform ls检查有没有刚刚添加的8.1
+然后执行cordova build android
+打包后安装在9.0的版本不能访问网络需要修改manifest.xml配置

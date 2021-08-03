@@ -1,0 +1,35 @@
+<div id="app">
+    <my-list :data="users"></my-list>
+    <my-list :data="customers"></my-list>
+</div>
+
+components:{
+                'my-list':{
+                    template:`
+                    <ul>
+                        <li v-for="item in data">{{item.name}}-{{item.age}}</li>
+                    </ul> 
+                    `,
+                    props:['data','title'],  //期待父组件传递给他的参数
+                    //或者 props:{
+                        data:Array,
+                        title:String
+                    }
+                    data() {
+                        return {}
+                    },
+                }
+            }
+
+
+父组件向子组件传递指定类型的值
+:a = "12"       数字类型
+:a = "true"     Boolean类型
+:a = "[1,2,3]"  Array类型
+:a = "{one:1,two:2}"
+
+
+自定义事件
+    子组件向父组件传值
+    this.$emit("close")
+    <my-alert @close="closeHandler"></my-alert>
