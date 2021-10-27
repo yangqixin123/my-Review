@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>常见数组去重</title>
+</head>
+<body>
+    <script>
+        let arr = [1,1,2,3,4,4,4,5,6,7,7,3,5];
+
+        //第一种
+        // let newArr = Array.from(new Set(arr));
+        // console.log('newArr',newArr);
+
+        //第二种
+        // for(let i = 0, len = arr.length; i < len; i++) {
+        //     for(let j = i + 1, len = arr.length; j < len; j++) {
+        //         if(arr[i] === arr[j]) {
+        //             arr.splice(j,1);
+        //             j--;
+        //             len--;
+        //         }
+        //     }
+        // }
+        // console.log('newArr',arr);
+
+        //第三种
+        // let newArr = [];
+        // for(let i = 0; i < arr.length; i++) {
+        //     if(newArr.indexOf(arr[i]) === -1) newArr.push(arr[i]) 
+        // }
+        // console.log('newArr',newArr);
+
+        //第四种
+        // arr.sort((a,b) => a-b);
+        // let newArr = [arr[0]];
+        // for(let i = 1; i < arr.length; i++) {
+        //     if(arr[i] !== arr[i-1]) newArr.push(arr[i])
+        // }
+        // console.log('newArr',newArr);
+
+        //第五种
+        // let newArr = [];
+        // for(let i = 0; i < arr.length; i++) {
+        //     if(!newArr.includes(arr[i])) newArr.push(arr[i]) 
+        // }
+        // console.log('newArr',newArr);
+
+        //第六种
+        // let newArr;
+        // newArr = arr.filter((item,index) => arr.indexOf(item) === index)
+        // console.log('newArr',newArr);
+
+        //第七种
+        // let newArr = arr, len = newArr.length;
+        // newArr.sort((a,b) => a - b);
+        // function loop(index) {
+        //     if(index >= 1) {
+        //         if(newArr[index] === newArr[index - 1]) newArr.splice(index,1)
+        //         loop(index - 1);
+        //     }
+        // }
+        // loop(len - 1);
+        // console.log('newArr',newArr);
+
+        //第八种
+        // let map = new Map();
+        // console.log('map',map);
+        // let newArr = [];
+        // for(let i = 0; i < arr.length; i++) {
+        //     if(map.has(arr[i])) {
+        //         map.set(arr[i],true)
+        //     }else {
+        //         map.set(arr[i],false);
+        //         newArr.push(arr[i])
+        //     }
+        // }
+        // console.log('newArr',newArr);
+
+        //第九种
+        let newArr = arr.reduce((prev, cur) => {
+            prev.indexOf(cur) === -1 && prev.push(cur);
+            return prev;
+        },[]);
+        console.log('newArr',newArr);
+    </script>
+</body>
+</html>
