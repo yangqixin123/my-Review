@@ -1,0 +1,334 @@
+linux简单操作
+连接  -->  ssh user@ip地址
+目录结构
+    window      linux
+        c盘         没有盘符的概念
+        d盘
+        e盘
+        f盘
+
+用户
+    超级用户    root        /home
+    普通用户    例如user    /home
+
+~ 家目录
+/ 根目录
+bin 系统可执行的文件目录
+usr 文件的安装目录  --->相当于windows 下的program files
+    apt-get install
+opt 第三方减压安装目录
+var 可变的文件目录
+sys 操作系统的目录
+etc 核心配置目录
+    /passwd
+    /group
+    /shadow
+    /sudoers
+
+基础命令
+    1. clear  清理屏幕       windows系统下使用cls清理屏幕
+    2. cd   进入文件夹的命令
+        cd + / 进入根目录
+        cd + 空格 进入家目录
+        cd + /绝对路径
+        cd + ./相对路径
+        cd + .. 返回上一层
+    3. ls   查看命令
+        ls ./   查看指定文件夹底下的内容
+        ls /
+        ls -a   查看所有文件，包括隐藏文件 
+        ls -A   查看所有文件，包括隐藏文件,但不包含. 和..
+        ls -l   查看文件的详细信息
+
+        drwxr-xr-x
+        d   代表文件夹  directory
+        rwx 代表当前用户对该文件的权限(r 可读  w 可写  x 可执行 )
+        r-x 代表同组用户对该文件的权限 不可写
+        r-x 代表其他用户对该文件的权限 不可写
+
+        -rw-r--r--
+        除了第一个，然后三个三个往后数代表权限
+
+    4. mkdir   在当前的路径下新建一个文件夹
+        mkdir + 文件夹名 文件夹名
+
+    5. touch   新建一个文件 还可以访问一下文件夹
+        touch + 文件名
+
+    6. rmdir   删除文件夹(只能删除空文件夹，不能删除非空文件夹和文件)
+
+    7. rm -r + 文件夹名(可以删除非空文件夹,也可以删除文件)
+
+    8. rm + 文件名(删除文件，不能删除文件夹)
+
+    9. mv  移动
+        mv + 需要移动的文件名/文件夹名 + 目标路径
+        eg: mv ./es5 /
+
+        也可以重命名 mv + 需要重命名的文件/文件夹 + 新的名字
+
+    10. cp  拷贝，复制
+        cp + 要复制的文件 + 复制之后的文件名
+        eg: cp note.txt a.txt
+
+    11. pwd  显示当前所在路径
+
+    12. more 预览(只能预览文件)
+        more + 文件路径/文件名
+
+    13. tail 预览文件(预览文件的后10行)
+        tail + 文件路径/文件名
+
+    14. head 预览文件(预览文件的前10行)
+        head + 文件路径/文件名
+
+    15. man (相当于一个命令的帮助手册)
+        man + 具体的命令
+        eg: man mv
+
+    16. cat (预览文件，可以预览多个文件)
+            cat + 文件名 + 文件名
+
+    17. nl  (预览文件，而且还显示了行号)
+            nl + 文件名
+
+    18. tac (将文件内容倒序展示)
+            tac + 文件名
+
+    19. apt-get remove --purge + 具体的软件名 (卸载某个软件)
+            加--purge是可以卸载的更干净
+
+    20. grep (筛选)
+        eg:  cat c.txt | grep 1002
+
+用户相关
+    1. adduser + 用户名
+            新增用户
+
+    2. userdel + 用户名
+            删除用户(但并不能完全删除干净)
+        userdel + -r + 用户名(完全删除用户)
+
+    3. su + 用户名(不完全切换)
+       su- + 用户名(完全切换)
+        root 切换到普通用户(不需要输入密码)
+        普通用户切换到普通用户、普通用户切换到root中(需要输入密码)
+
+        root@VM-24-12-ubuntu:~# 
+            root    当前用户是谁
+            @       分割符
+            VM-24-12-ubuntu     主机名
+            ：      分割符
+            ～      当前路径
+            #       分割符
+
+    修改主机名
+        /etc/hostname
+
+    passwd + 用户名(修改密码)
+
+    /etc/passwd 里面存储的是用户信息
+
+    /etc/shadow 里面存储的是用户密码(密码是加密的)
+
+    id + 用户名 (查看用户ID和分组情况)
+
+    groupmod -n + 新组名 + 旧组名  (修改组名)
+
+    usermod -g + 组id + 要更改的用户名     (更改用户到某个组中)
+        eg: usermod -g 1001 yqx
+
+    groupdel + 组名 (删除组)
+
+
+    date    输出当前的日期
+
+    calendar    日历
+
+    >   注入
+        把输出的内容注入到某个文件中
+        eg: date > a.txt
+
+压缩
+    1.gzip
+        压缩:   gzip + 文件/文件夹的名字
+        解压缩:  gunzip + 压缩包的名字 eg: b.txt.gz
+        后缀: .gz
+
+    2.bzip2
+        压缩:   bzip2 + 文件/文件夹的名字
+        解压缩:  bunzip2 + 压缩包的名字 eg: b.txt.bz2  
+        后缀: .bz2
+
+    3.zip
+        apt-get install zip  需要先安装zip
+        压缩: zip + 压缩后的文件名 + 要压缩的文件名
+        解压缩: unzip + 压缩文件名
+                    解压到当前目录下，当前文件夹下可能有这个文件会重名
+                    需要覆盖或者重命名
+               unzip 压缩文件名 + -d + 目标文件
+                    解压到目标文件下
+        后缀: zip 
+
+
+进程相关
+    ps -ef | grep java 筛选出java相关的进程
+
+    java -jar jar包名
+
+    nohup java -jar jar包名 &  （在后台运行服务）
+
+更新源
+    apt-get update
+    安装git 
+        apt-get install git
+    安装spf13
+        curl https://j.mp/spf13-vim3 -L > spf13-vim.sh && sh spf13-vim.sh
+
+授权
+    给某个用户授权
+        修改 /etc/sudoers
+
+修改文件的权限
+    1. chmod +
+        o   其他用户
+        u   自己本身
+        g   同组用户
+
+        w   写
+        r   读
+        x   可执行
+
+        eg: chmod g+w index.html （给同组人员增加index.html的写权限）
+
+    2. chmod + 
+        eg: chmod 776 index.html
+            user    7
+            group   7
+            other   6
+
+            rwx
+            用数字表示权限
+            ---     000     0
+            --x     001     1
+            -w-     010     2
+            -wx     011     3
+            r--     100     4
+            r-x     101     5
+            rw-     110     6
+            rwx     111     7 
+
+
+三种模式
+    1.命令行模式
+        底行 --> 命令行     按ESC
+        编辑 --> 命令行     按ESC
+
+        命令行 ---> 底行    按:
+        命令行 ---> 编辑
+            i  ---> 在光标所在字符之前进行插入
+            I  ---> 在光标所在的当前行前面进行插入
+            a  ---> 在光标所在字符之后进行插入
+            A  ---> 在光标所在的当前行末尾进行插入
+            o  ---> 在当前行之后插入一行
+            O  ---> 在当前行之前插入一行
+
+        (1)删除
+            dd  ---> 删除当前一行
+            3dd ---> 删除三行(包含当前行)
+            x   ---> 删除当前光标所在的一个字符
+            3x  ---> 删除三个字符(包括当前光标所在字符)
+            dw  ---> 删除一个单词，删除光标之后的内容
+            3dw ---> 删除三个单词
+
+        (2)复制
+            yy  ---> 复制一行
+            3yy ---> 连续复制三行
+            yw  ---> 复制一个单词
+            3yw ---> 复制三个单词
+
+          p 粘贴
+
+    2.底行模式
+        (1). :set  参数
+            临时参数设置
+            :set nu    设置行号
+            :set autoindent  设置缩进  和上一行的缩进保持一致
+            :set tabstop = x 设置tab缩进几格
+
+        (2).定位光标的位置
+            :n  将光标跳转到第n行
+            :$  跳转到最后一行 
+
+        (3).保存
+            w    保存
+            q    推出
+            wq   保存并推出
+            wq!  强制保存并推出
+            w!   强制保存
+            q!   强制退出
+            :w + 文件名
+                当前文件另存为...
+                默认保存着当前的路径下
+
+        (4).查找
+            /字符       当前行往下去查找该字符
+                n   寻找下一个
+                N   寻找上一个
+            
+            ？字符      当前行往上去查找该字符
+                n   寻找上一个
+                N   寻找下一个
+
+        (5).替换
+            :n,ms/old/new/g
+            n   代表开始行
+            m   代表结束行
+            old 代表要被替换的字符
+            new 代表新的字符
+            g   代表全局
+
+        (6).移动
+            :17,19co20
+                把17行到19行，复制到20行底下
+            :16,20m23
+                从16行到20行，移动到第23行
+
+        (7).分屏
+            :split      分屏
+            :close      关闭分屏
+    3.编辑模式
+             
+    底行模式 <----> 命令行模式 <----> 编辑模式 
+    底行模式和编辑模式不可以直接切换，只能通过命令行模式进行切换
+
+
+安装软件
+    1.apache    
+        在线安装
+            apt-get install apache2     (执行不成功加sudo)
+        查看状态
+            service apache2 status
+            service apache2 stop    关闭服务
+            service apache2 start   开启服务
+            service apache2 restart   重启服务
+    2.vsftpd
+        sudo apt-get install vsftpd
+        vsftpd -v       查看版本号
+        cp /etc/vsftpd.conf/etc/vsftpd.conf.bak     备份配置文件，修改第31行(注释解开,然后重启vsftpd------service vsftpd restart)
+    3.node
+        先从官网上下载了node-v8.11.4-linux-x64.tar.xz
+        然后传到一个用户下，然后使用sudo mv ./node-v8.11.4-linux-x64.tar.xz /opt 移动到opt目录下
+        然后去opt下解压     sudo tar -xvf ./node-v8.11.4-linux-x64.tar.xz
+        然后回到家目录配置环境变量    cd空格  vi .bashrc
+                                         在最后加上
+                                         export NODE_HOME=/opt/node-v8.11.4-linux-x64
+		                                 export PATH=$PATH:$NODE_HOME/bin 
+                                         然后保存并退出再执行source .bashrc
+    4.java
+        sudo apt install openjdk-8-jre-handless
+        sudo apt install openjdk-8-jdk-handless
+    5.mysql
+        sudo apt-get install mysql-server
+
+
