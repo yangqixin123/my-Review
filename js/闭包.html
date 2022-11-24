@@ -1,0 +1,97 @@
+<!--
+ * @Description: 
+ * @Author: yangqixin
+ * @Date: 2022-11-21 15:37:25
+ * @LastEditTime: 2022-11-24 16:10:30
+ * @LastEditors: yangqixin
+ * @FilePath: /my-Review/js/闭包.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>闭包小应用</title>
+</head>
+<body>
+    <script>
+        function a() {
+            var num = 100;
+            function b() {
+                num ++;
+                console.log(num);
+            }
+            return b
+        }
+        var demo = a();
+        demo();
+        demo();
+
+        function test() {
+            let arr = [];
+            for(var i = 0; i < 10; i++) {
+                arr[i] = function() {
+                    console.log(i);
+                }
+            }
+            return arr
+        }
+        let myArr = test();
+        myArr.forEach(i => i())
+
+
+        function test111() {
+            let arr = [];
+            for(var i = 0; i < 10; i++) {
+                (function(j){
+                    arr[i] = function(){
+                        console.log(j);
+                    }
+                }(i))
+            }
+            return arr
+        }
+        let myArr1 = test111();
+        myArr1.forEach(i => i())
+
+        /*
+            当内部函数被保存到外部时，将会生成闭包。闭包会导致原有作用域链不释放，造成内存泄漏
+        */
+
+        //应用
+        //1.累加器
+        function add() {
+            let count = 0;
+            function demo() {
+                count ++;
+                console.log(count);
+            }
+            return demo;
+        }
+        let counter = add();
+        counter()
+        counter()
+        counter()
+        
+
+        //2.缓存(存储结构)
+        function eater() {
+            let food = '';
+            let obj = {
+                eat: function() {
+                    console.log(`I am eating ${food}`);
+                    food = '';
+                },
+                push: function(myFood) {
+                    food = myFood
+                }
+            };
+            return obj
+        }
+        let eater1 = eater();
+        eater1.push('banana');
+        eater1.eat();
+    </script>
+</body>
+</html>

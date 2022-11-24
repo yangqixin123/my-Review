@@ -1,0 +1,49 @@
+<!--
+ * @Description: 
+ * @Author: yangqixin
+ * @Date: 2022-11-24 14:09:47
+ * @LastEditTime: 2022-11-24 15:31:51
+ * @LastEditors: yangqixin
+ * @FilePath: /my-Review/js/立即执行函数.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        //立即执行函数
+        //针对初始化功能的函数
+        (function() {}());       //w3c建议这种写法
+        (function(){})();
+
+        (function abc() {
+            let a = 123;
+            let b = 234;
+            console.log(a + b);
+        }());
+
+        //只有表达式才能被执行符号执行
+        // function test() {
+        //     console.log('123');      <====       这样写法是错的
+        // }();
+
+        let test = function() {
+            console.log('123');
+        }();
+
+        + function test1() {
+            console.log('666');
+        }();
+
+        // function test2(a,b,c,d) {
+        //     console.log(a + b + c + d);    ====> 这样不会报错是因为系统认为应该这么执行
+        // }(1,2,3,4)                                       function test2(a,b,c,d){}
+        //                                                  (1,2,3,4)
+    </script>
+</body>
+</html>

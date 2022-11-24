@@ -1,0 +1,40 @@
+<!--
+ * @Description: 
+ * @Author: yangqixin
+ * @Date: 2022-11-21 14:31:41
+ * @LastEditTime: 2022-11-23 17:06:50
+ * @LastEditors: yangqixin
+ * @FilePath: /my-Review/js/作用域.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        function a() {
+            function b() {
+                var b = 234
+            }
+            var a = 123
+            b();
+        }
+        var glob = 100;
+        a();
+        
+        //a 函数被定义的时候 a.[[scope]] ---> 0: GO {};
+        //a 函数被执行的时候 a.[[scope]] ---> 0: AO {};
+                                            //1: GO {};       作用域链 scope chain
+        //b 函数被定义的时候 b.[[scope]] ---> a的作用域链
+        //b 函数被执行的时候 b.[[scope]] ---> 0. b的AO {};
+                                        // 1. a的AO {};
+                                        // 2. GO {};
+        //查找一个变量的时候从作用域链的顶端开始往下找
+
+    </script>
+</body>
+</html>
