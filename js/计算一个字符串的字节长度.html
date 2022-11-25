@@ -1,0 +1,42 @@
+<!--
+ * @Description: 
+ * @Author: yangqixin
+ * @Date: 2022-11-24 17:20:08
+ * @LastEditTime: 2022-11-24 17:33:15
+ * @LastEditors: yangqixin
+ * @FilePath: /my-Review/js/计算一个字符串的字节长度.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        // function getBytesLen(target) {
+        //     let count = 0;
+        //     for(let i = 0; i < target.length; i++) {
+        //         if(target.charCodeAt(i) <= 255) {
+        //             count ++
+        //         }else if(target.charCodeAt(i) > 255) {
+        //             count += 2
+        //         }
+        //     }
+        //     return count
+        // }
+
+
+        function getBytesLen(target) {
+            let count,len;
+            count = len = target.length;
+            for(let i = 0; i < len; i++) {
+                if(target.charCodeAt(i) > 255) count ++
+            }
+            return count
+        }
+    </script>
+</body>
+</html>

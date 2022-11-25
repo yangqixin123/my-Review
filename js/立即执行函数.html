@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yangqixin
  * @Date: 2022-11-24 14:09:47
- * @LastEditTime: 2022-11-24 15:31:51
+ * @LastEditTime: 2022-11-24 17:43:41
  * @LastEditors: yangqixin
  * @FilePath: /my-Review/js/立即执行函数.html
 -->
@@ -44,6 +44,11 @@
         //     console.log(a + b + c + d);    ====> 这样不会报错是因为系统认为应该这么执行
         // }(1,2,3,4)                                       function test2(a,b,c,d){}
         //                                                  (1,2,3,4)
+
+        //,逗号运算符 （a,b）如果a是一个表达式，先计算a的值，然后再计算b的值(如果b是一个表达式),最后返回b
+        //var a = (2,3)  a===>3    var b = (1-1,1+1) b===>2
+        let test2 = (function f() { return '1' }, function g() { return 2 })();
+        console.log(typeof test2);
     </script>
 </body>
 </html>
